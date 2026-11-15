@@ -23,7 +23,7 @@ button{width:100%;padding:15px;background:#facc15;border:0;border-radius:10px;fo
 <button id="btn" onclick="send()">أطلب الآن ✅</button>
 <p id="msg" style="text-align:center"></p>
 <script>
-const URL="https://script.google.com/macros/s/AKfycbyegmQKb-cpHfKyHpT5yoHPzdKU3lyA7CnL2rPMluew1hXTHazTOzthL1SIQNvSOWI/exec";
+const URL="https://script.google.com/macros/s/AKfycbxLy80xbfe6ijP8xrzfsHOZOj0JiVT0zDMsdBNAoJfGabVUygPJNnpeXYzDIdxu6qA/exec";
 async function send(){let btn=document.getElementById('btn');let d={name:document.getElementById('name').value,phone:document.getElementById('phone').value,car:document.getElementById('car').value,size:document.getElementById('size').value,brand:document.getElementById('brand').value,qty:document.getElementById('qty').value};if(!d.name||!d.phone){alert("عمر الاسم و الهاتف");return;}btn.disabled=true;btn.innerText="جاري الإرسال...";try{await fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify(d)});document.getElementById('msg').innerText="✅ تم استلام طلبك";btn.innerText="✅ تم الإرسال";}catch(e){document.getElementById('msg').innerText="❌ عاود حاول";btn.disabled=false;}}
 </script>
 </body>
