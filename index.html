@@ -8,9 +8,7 @@
 body{font-family:Arial;background:#0f172a;color:#fff;padding:20px}
 input,select{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:0}
 button{width:100%;padding:15px;background:#facc15;border:0;border-radius:10px;font-weight:bold;font-size:18px}
-button:disabled{background:#999;color:#fff}
-.logo-wheel{width:55px;height:55px;border-radius:50%;object-fit:cover;vertical-align:middle;animation:spin 2.5s linear infinite}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.logo-wheel{width:55px;height:55px;border-radius:50%;object-fit:cover;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -19,31 +17,14 @@ button:disabled{background:#999;color:#fff}
 <input id="name" placeholder="الاسم الكامل">
 <input id="phone" placeholder="الهاتف">
 <input id="car" placeholder="السيارة - مثال: Clio 4">
-<select id="size">
-<option>175/70 R13</option>
-<option>185/65 R15</option>
-<option>195/65 R15</option>
-<option>205/55 R16</option>
-<option>225/45 R17</option>
-</select>
-<select id="brand">
-<option>Michelin</option>
-<option>Bridgestone</option>
-<option>Continental</option>
-<option>Hankook</option>
-<option>Triangle</option>
-</select>
+<select id="size"><option>175/70 R13</option><option>185/65 R15</option><option>195/65 R15</option><option>205/55 R16</option><option>225/45 R17</option></select>
+<select id="brand"><option>Michelin</option><option>Bridgestone</option><option>Continental</option><option>Hankook</option><option>Triangle</option></select>
 <input id="qty" type="number" value="2" placeholder="الكمية">
 <button id="btn" onclick="send()">أطلب الآن ✅</button>
 <p id="msg" style="text-align:center"></p>
 <script>
 const URL="https://script.google.com/macros/s/AKfycbyegmQKb-cpHfKyHpT5yoHPzdKU3lyA7CnL2rPMluew1hXTHazTOzthL1SIQNvSOWI/exec";
-async function send(){
-let btn=document.getElementById('btn');
-let d={name:document.getElementById('name').value,phone:document.getElementById('phone').value,car:document.getElementById('car').value,size:document.getElementById('size').value,brand:document.getElementById('brand').value,qty:document.getElementById('qty').value};
-if(!d.name || !d.phone){alert("من فضلك عمر الاسم و الهاتف");return;}
-btn.disabled=true;btn.innerText="جاري الإرسال...";document.getElementById('msg').innerText="جاري الإرسال...";
-try{await fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify(d)});document.getElementById('msg').innerText="✅ تم استلام طلبك، راح نعيطولك";btn.innerText="✅ تم الإرسال";}catch(e){document.getElementById('msg').innerText="❌ كاين مشكل، عاود حاول";btn.disabled=false;btn.innerText="أطلب الآن ✅";}}
+async function send(){let btn=document.getElementById('btn');let d={name:document.getElementById('name').value,phone:document.getElementById('phone').value,car:document.getElementById('car').value,size:document.getElementById('size').value,brand:document.getElementById('brand').value,qty:document.getElementById('qty').value};if(!d.name||!d.phone){alert("عمر الاسم و الهاتف");return;}btn.disabled=true;btn.innerText="جاري الإرسال...";try{await fetch(URL,{method:'POST',mode:'no-cors',body:JSON.stringify(d)});document.getElementById('msg').innerText="✅ تم استلام طلبك";btn.innerText="✅ تم الإرسال";}catch(e){document.getElementById('msg').innerText="❌ عاود حاول";btn.disabled=false;}}
 </script>
 </body>
 </html>
